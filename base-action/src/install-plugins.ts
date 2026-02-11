@@ -204,7 +204,7 @@ async function getInstalledMarketplaces(
     const childProcess = spawn(
       claudeExecutable,
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
 
     let output = "";
@@ -212,7 +212,11 @@ async function getInstalledMarketplaces(
       output += data.toString();
     });
 
-    childProcess.on("close", () => {
+    childProcess.on("close", (code: number | null) => {
+      if (code !== 0) {
+        resolve([]);
+        return;
+      }
       try {
         const marketplaces: MarketplaceEntry[] = JSON.parse(output);
         const names = marketplaces.map((m) => m.name);
@@ -247,8 +251,20 @@ async function removeMarketplace(
       { stdio: "inherit" },
     );
 
-    childProcess.on("close", () => resolve());
-    childProcess.on("error", () => resolve());
+    childProcess.on("close", (code: number | null) => {
+      if (code !== 0) {
+        console.warn(
+          `Warning: failed to remove marketplace '${name}' (exit code: ${code})`,
+        );
+      }
+      resolve();
+    });
+    childProcess.on("error", (err: Error) => {
+      console.warn(
+        `Warning: failed to remove marketplace '${name}': ${err.message}`,
+      );
+      resolve();
+    });
   });
 }
 

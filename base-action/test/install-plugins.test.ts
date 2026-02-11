@@ -366,7 +366,7 @@ describe("installPlugins", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     // Second call: add marketplace
     expect(spy).toHaveBeenNthCalledWith(
@@ -402,7 +402,7 @@ describe("installPlugins", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     // Next two calls: add marketplaces
     expect(spy).toHaveBeenNthCalledWith(
@@ -439,7 +439,7 @@ describe("installPlugins", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     // Second call: add marketplace
     expect(spy).toHaveBeenNthCalledWith(
@@ -477,7 +477,7 @@ describe("installPlugins", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     expect(spy).toHaveBeenNthCalledWith(
       2,
@@ -514,7 +514,7 @@ describe("installPlugins", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     expect(spy).toHaveBeenNthCalledWith(
       2,
@@ -616,7 +616,7 @@ describe("installPlugins", () => {
       1,
       "/custom/path/to/claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     expect(spy).toHaveBeenNthCalledWith(
       2,
@@ -647,7 +647,7 @@ describe("installPlugins", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
     expect(spy).toHaveBeenNthCalledWith(
       2,
@@ -842,7 +842,7 @@ describe("installPlugins - marketplace removal before add", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
 
     // Second: remove existing marketplace
@@ -923,7 +923,7 @@ describe("installPlugins - marketplace removal before add", () => {
       1,
       "claude",
       ["plugin", "marketplace", "list", "--json"],
-      { stdio: ["inherit", "pipe", "inherit"] },
+      { stdio: ["ignore", "pipe", "inherit"] },
     );
 
     expect(spy).toHaveBeenNthCalledWith(
